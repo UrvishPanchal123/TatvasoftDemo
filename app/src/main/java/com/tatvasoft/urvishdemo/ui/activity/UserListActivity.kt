@@ -86,11 +86,11 @@ class UserListActivity : BaseActivity<ActivityUserListBinding>(),
 
                 if (resultModel.status) {
                     bindUserList(resultModel.data)
-                    mBinding.recyclerUserList.adapter =
-                        UserListAdapter(
-                            this,
-                            resultModel.data?.userList as MutableList<UserModel.User>?
-                        )
+//                    mBinding.recyclerUserList.adapter =
+//                        UserListAdapter(
+//                            this,
+//                            resultModel.data?.userList as MutableList<UserModel.User>?
+//                        )
                 }
             })
     }
