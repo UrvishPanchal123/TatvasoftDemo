@@ -2,6 +2,7 @@ package com.tatvasoft.urvishdemo.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tatvasoft.urvishdemo.databinding.ItemUserListBinding
 import com.tatvasoft.urvishdemo.databinding.LayoutPaginationBottomLoaderBinding
@@ -102,6 +103,23 @@ class UserListAdapter(
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val holder = viewHolder as UserViewHolder
         holder.bindData(data?.get(holder.adapterPosition))
+
+        val layoutManager = GridLayoutManager(mContext, 2)
+
+//        layoutManager.spanSizeLookup = object : SpanSizeLookup() {
+//            override fun getSpanSize(position: Int): Int {
+//                return if (data?.get(position)?.items?.size!! % 2 == 0) {
+//                    2
+//                } else {
+//                    1
+//                }
+//            }
+//        }
+
+        holder.mBinding.recyclerUserItemList.layoutManager = layoutManager
+
+        val adapter = UserItemAdapter(mContext, data?.get(holder.adapterPosition)?.items)
+        holder.mBinding.recyclerUserItemList.adapter = adapter
     }
 
     class UserViewHolder(var mBinding: ItemUserListBinding) :
